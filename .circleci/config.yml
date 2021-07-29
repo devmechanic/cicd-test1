@@ -9,9 +9,9 @@ jobs:
       - image: cimg/base:2021.07
     steps:
       - persist_to_workspace:
-        root: /tmp
-        paths:
-          - source_code
+          root: /tmp
+          paths:
+            - source_code
       - checkout
       - run: cp -a . /tmp/source_code
   security_scan:
