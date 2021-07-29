@@ -8,6 +8,7 @@ jobs:
     docker:
       - image: cimg/base:2021.07
     steps:
+      - run: mkdir /tmp/source_code
       - persist_to_workspace:
           root: /tmp
           paths:
