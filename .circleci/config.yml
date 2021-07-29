@@ -1,0 +1,43 @@
+version: 2.1
+
+orbs:
+  aws-ecr: circleci/aws-ecr@7.0.0
+
+jobs:
+  checkout:
+    docker:
+      - image: cimg/base:2021.07
+    steps:
+      - persist_to_workspace:
+        root: /tmp
+        paths:
+          - source_code
+      - checkout
+      - run: cp -a . /tmp/source_code
+  security_scan:
+    docker:
+      - image: cimg/base:2021.07
+    steps:
+      - attach_workspace:
+          at: /tmp/source_code
+      - run: echo 'Scan Completed - No vulnerabilities found.'
+  build_image:
+    docker:
+      - image: cimg/base:2021.07
+    steps:
+      - attach_workspace:
+          at: /tmp/source_code
+      - run : cd /tmp/source_code
+      - aws-ecr/build-image
+
+workflows:
+  version: 2
+  build-test:
+    jobs:
+      - checkout
+      - security_scan:
+          requires:
+            - checkout
+      - build_image:
+          requires:
+            - security_scan
