@@ -30,7 +30,8 @@ jobs:
           at: /tmp/source_code
       - run : cd /tmp/source_code
       - aws-ecr/build-image:
-          repo: 050400155701.dkr.ecr.us-east-1.amazonaws.com/marcin-cicd-demo
+          account-url: 050400155701.dkr.ecr.us-east-1.amazonaws.com
+          repo: marcin-cicd-demo
 
 workflows:
   version: 2
