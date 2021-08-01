@@ -33,7 +33,6 @@ jobs:
     steps:
       - attach_workspace:
           at: /tmp
-      - run: cd /tmp/source_code && pwd && ls -la
       - aws-ecr/build-image:
           repo: marcin-cicd-demo
 
