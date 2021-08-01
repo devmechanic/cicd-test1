@@ -23,8 +23,9 @@ jobs:
           at: /tmp/source_code
       - run: echo 'Scan Completed - No vulnerabilities found.'
   build_image:
-    docker:
-      - image: cimg/base:2021.07
+    machine:
+#    docker:
+#      - image: cimg/base:2021.07
     environment:
       AWS_ECR_ACCOUNT_URL: 050400155701.dkr.ecr.us-east-1.amazonaws.com
     working_directory: /tmp/source_code
