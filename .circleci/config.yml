@@ -30,7 +30,7 @@ jobs:
     working_directory: /tmp/source_code
     steps:
       - attach_workspace:
-          at: /tmp/source_code
+          at: /tmp
       - run: pwd & ls -la
       - aws-ecr/build-image:
           repo: marcin-cicd-demo
