@@ -24,6 +24,7 @@ jobs:
       - run: echo 'Scan Completed - No vulnerabilities found.'
   build_image:
     machine:
+      image: ubuntu-2004:202107-01
 #    docker:
 #      - image: cimg/base:2021.07
     environment:
