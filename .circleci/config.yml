@@ -9,12 +9,12 @@ jobs:
       - image: cimg/base:2021.07
     steps:
       - run: mkdir /tmp/source_code
-      - persist_to_workspace:
-          root: /tmp
-          paths:
-            - source_code
       - checkout
       - run: cp -a . /tmp/source_code
+      - persist_to_workspace:
+          root: /tmp
+            paths:
+              - source_code
   security_scan:
     docker:
       - image: cimg/base:2021.07
