@@ -63,14 +63,11 @@ jobs:
           at: /tmp
       - run: echo 'Unit Test Completed - No issues found.'
   Push Image to ECR:
-    docker:
-      - image: cimg/base:2021.07
+    machine:
+      image: ubuntu-2004:202107-01
     steps:
       - attach_workspace:
           at: /tmp
-      - setup_remote_docker:
-          version: 20.10.06
-          docker_layer_caching: true
       - run:
           name: Load Image from workspace
           command: |
