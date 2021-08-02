@@ -35,7 +35,7 @@ jobs:
           at: /tmp
       - aws-ecr/build-image:
           repo: marcin-cicd-demo
-          tag: '210802-f8af15a'
+          tag: 210802-f8af15a
       - run:
   Unit Test:
     docker:
