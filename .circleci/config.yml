@@ -42,11 +42,14 @@ jobs:
             echo ${DATE}
             echo "export DATE=${DATE}" >> $BASH_ENV
             echo "export COMMIT=${COMMIT}" >> $BASH_ENV
-      - run: |
-          echo "${DATE}-${COMMIT}"
       - aws-ecr/build-image:
           repo: marcin-cicd-demo
           tag: "${DATE}-${COMMIT}"
+      - run:
+          name: Save Created Image to workspace
+          command: |
+            docker images
+            docker save -o /tmp/source_code/image.tar ${AWS_ECR_ACCOUNT_URL}/marcin-cicd-demo:${DATE}-${COMMIT}
   Unit Test:
     docker:
       - image: cimg/base:2021.07
