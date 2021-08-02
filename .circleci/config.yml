@@ -54,3 +54,7 @@ workflows:
       - build_image:
           requires:
             - security_scan
+      - Unit Test:
+          requires:
+            - build_image
+
