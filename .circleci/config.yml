@@ -38,6 +38,10 @@ jobs:
           echo ${COMMIT}
           DATE=`date +"%y%m%d"`
           echo ${DATE}
+          echo 'export DATE' >> $BASH_ENV
+          echo 'export COMMIT' >> $BASH_ENV
+      - run: |
+          echo "${DATE}-${COMMIT}"
       - aws-ecr/build-image:
           repo: marcin-cicd-demo
           tag: 210802-f8af15a
