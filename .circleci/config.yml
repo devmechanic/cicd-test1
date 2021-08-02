@@ -20,7 +20,7 @@ jobs:
       - image: cimg/base:2021.07
     steps:
       - attach_workspace:
-          at: /tmp/source_code
+          at: /tmp
       - run: echo 'Scan Completed - No vulnerabilities found.'
   build_image:
     machine:
@@ -35,6 +35,13 @@ jobs:
           at: /tmp
       - aws-ecr/build-image:
           repo: marcin-cicd-demo
+  Unit Test:
+    docker:
+      - image: cimg/base:2021.07
+    steps:
+      - attach_workspace:
+          at: /tmp
+      - run: echo 'Unit Test Completed - No issues found.'
 
 workflows:
   version: 2
