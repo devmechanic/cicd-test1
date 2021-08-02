@@ -33,6 +33,11 @@ jobs:
     steps:
       - attach_workspace:
           at: /tmp
+      - run: |
+          COMMIT=`git rev-parse --short HEAD | tr -d "\n"`
+          echo ${COMMIT}
+          DATE=`date +"%y%m%d"`
+          echo ${DATE}
       - aws-ecr/build-image:
           repo: marcin-cicd-demo
           tag: 210802-f8af15a
