@@ -51,6 +51,10 @@ jobs:
             docker images
             docker save -o /tmp/source_code/image.tar ${AWS_ECR_ACCOUNT_URL}/marcin-cicd-demo:${DATE}-${COMMIT}
             ls -la
+      - persist_to_workspace:
+          root: /tmp
+          paths:
+            - source_code
   Unit Test:
     docker:
       - image: cimg/base:2021.07
