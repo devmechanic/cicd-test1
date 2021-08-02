@@ -36,7 +36,6 @@ jobs:
       - aws-ecr/build-image:
           repo: marcin-cicd-demo
           tag: 210802-f8af15a
-      - run:
   Unit Test:
     docker:
       - image: cimg/base:2021.07
@@ -49,14 +48,14 @@ workflows:
   version: 2
   build-test:
     jobs:
-      - checkout
-      - security_scan:
+      - Checkout
+      - Security Scan:
           requires:
-            - checkout
-      - build_image:
+            - Checkout
+      - Build Docker Image:
           requires:
-            - security_scan
+            - Security Scan
       - Unit Test:
           requires:
-            - build_image
+            - Build Docker Image
 
