@@ -68,6 +68,9 @@ jobs:
     steps:
       - attach_workspace:
           at: /tmp
+      - setup_remote_docker:
+          version: 20.10.06
+          docker_layer_caching: true
       - run:
           name: Load Image from workspace
           command: |
