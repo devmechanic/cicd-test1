@@ -67,6 +67,7 @@ jobs:
       - run:
           name: Load Image from workspace
           command: |
+            ls -la /tmp/source_code/
             docker load -i /tmp/source_code/image.tar
             docker images
 
