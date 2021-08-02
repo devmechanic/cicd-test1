@@ -38,8 +38,8 @@ jobs:
           echo ${COMMIT}
           DATE=`date +"%y%m%d"`
           echo ${DATE}
-          echo 'export DATE' >> $BASH_ENV
-          echo 'export COMMIT' >> $BASH_ENV
+          echo "export DATE=${DATE}" >> $BASH_ENV
+          echo "export COMMIT=${COMMIT}" >> $BASH_ENV
       - run: |
           echo "${DATE}-${COMMIT}"
       - aws-ecr/build-image:
