@@ -4,7 +4,7 @@ orbs:
   aws-ecr: circleci/aws-ecr@7.0.0
 
 jobs:
-  checkout:
+  Checkout:
     docker:
       - image: cimg/base:2021.07
     steps:
@@ -15,14 +15,14 @@ jobs:
           root: /tmp
           paths:
             - source_code
-  security_scan:
+  Security Scan:
     docker:
       - image: cimg/base:2021.07
     steps:
       - attach_workspace:
           at: /tmp
       - run: echo 'Scan Completed - No vulnerabilities found.'
-  build_image:
+  Build Docker Image:
     machine:
       image: ubuntu-2004:202107-01
 #    docker:
@@ -35,6 +35,8 @@ jobs:
           at: /tmp
       - aws-ecr/build-image:
           repo: marcin-cicd-demo
+          tag: '210802-f8af15a'
+      - run:
   Unit Test:
     docker:
       - image: cimg/base:2021.07
