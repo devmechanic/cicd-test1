@@ -33,13 +33,15 @@ jobs:
     steps:
       - attach_workspace:
           at: /tmp
-      - run: |
-          COMMIT=`git rev-parse --short HEAD | tr -d "\n"`
-          echo ${COMMIT}
-          DATE=`date +"%y%m%d"`
-          echo ${DATE}
-          echo "export DATE=${DATE}" >> $BASH_ENV
-          echo "export COMMIT=${COMMIT}" >> $BASH_ENV
+      - run:
+          name: Get Current Date and Commit for Image Tag
+          command: |
+            COMMIT=`git rev-parse --short HEAD | tr -d "\n"`
+            echo ${COMMIT}
+            DATE=`date +"%y%m%d"`
+            echo ${DATE}
+            echo "export DATE=${DATE}" >> $BASH_ENV
+            echo "export COMMIT=${COMMIT}" >> $BASH_ENV
       - run: |
           echo "${DATE}-${COMMIT}"
       - aws-ecr/build-image:
