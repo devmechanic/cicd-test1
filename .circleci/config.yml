@@ -58,6 +58,17 @@ jobs:
       - attach_workspace:
           at: /tmp
       - run: echo 'Unit Test Completed - No issues found.'
+  Push Image to ECR:
+    docker:
+      - image: cimg/base:2021.07
+    steps:
+      - attach_workspace:
+          at: /tmp
+      - run:
+          name: Load Image from workspace
+          command: |
+            docker load -i /tmp/source_code/image.tar
+            docker images
 
 workflows:
   version: 2
@@ -73,4 +84,8 @@ workflows:
       - Unit Test:
           requires:
             - Build Docker Image
+      - Push Image to ECR:
+          requires:
+            - Unit Test
+
 
