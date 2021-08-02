@@ -44,7 +44,7 @@ jobs:
           echo "${DATE}-${COMMIT}"
       - aws-ecr/build-image:
           repo: marcin-cicd-demo
-          tag: 210802-f8af15a
+          tag: "${DATE}-${COMMIT}"
   Unit Test:
     docker:
       - image: cimg/base:2021.07
